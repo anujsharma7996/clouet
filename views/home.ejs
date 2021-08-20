@@ -6,10 +6,25 @@
     <h4>Posts</h4>
 
     <form action="/posts/create" id="new-post-form" method="POST">
-
         <textarea name="content" cols="30" rows="3"></textarea>
         <input type="submit" value="Post">
-
-
     </form>
+</section>
+
+<section class="post-list-container">
+    <ul>
+        <% for (post of posts) { %>
+            <li>
+                <p>
+                    <small>
+                        <%= post.user.name %>
+                    </small>
+
+                    <br>
+
+                    <%= post.content %>
+                </p>
+            </li>
+            <% } %>
+    </ul>
 </section>
