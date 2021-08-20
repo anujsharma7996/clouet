@@ -1,25 +1,36 @@
 const User = require('../models/user');
+// const passport = require('passport');
 
 // rendering profile page
 module.exports.profile = function (req, res) {
-    if (req.cookies.user_id) {
-        User.findById(req.cookies.user_id, function (err, user) {
-            if (user) {
-                return res.render('users', {
-                    title: "Profile",
-                    user: user
-                });
-            }
+    // if (req.cookies.user_id) {
+    //     User.findById(req.cookies.user_id, function (err, user) {
+    //         if (user) {
+    //             return res.render('users', {
+    //                 title: "Profile",
+    //                 user: user
+    //             });
+    //         }
 
-            return res.redirect('/users/sign-in');
-        });
-    } else {
-        return res.redirect('/users/sign-in');
-    }
+    //         return res.redirect('/users/sign-in');
+    //     });
+    // } else {
+    //     return res.redirect('/users/sign-in');
+    // }
+
+    return res.render('users', {
+        title: "Profile"
+    });
 }
 
 // rendering sign-up page
 module.exports.signUp = function (req, res) {
+
+    // redirect to profile if already logged in
+    if (req.isAuthenticated()) {
+        return res.redirect('/users/profile');
+    }
+
     return res.render('sign_up', {
         title: "Sign-up"
     });
@@ -27,6 +38,12 @@ module.exports.signUp = function (req, res) {
 
 // rendering sign-in page
 module.exports.signIn = function (req, res) {
+
+    // redirect to profile if already logged in
+    if (req.isAuthenticated()) {
+        return res.redirect('/users/profile');
+    }
+
     return res.render('sign_in', {
         title: "Sign-in"
     });
@@ -92,7 +109,15 @@ module.exports.create = function (req, res) {
 //     });
 //}
 
+
+
 // sign in and create a session for the user using passport
 module.exports.createSession = function (req, res) {
+    return res.redirect('/');
+}
+
+module.exports.destroySession = function (req, res) {
+    req.logout();
+
     return res.redirect('/');
 }

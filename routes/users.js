@@ -3,10 +3,10 @@ const router = express.Router();
 const passport = require('passport');
 
 const usersController = require('../controllers/users_controller');
-const User = require('../models/user');
+//const User = require('../models/user');
 
 // profile router
-router.get('/profile', usersController.profile);
+router.get('/profile', passport.checkAuthentication, usersController.profile);
 
 // sign up page router
 router.get('/sign-up', usersController.signUp);
@@ -22,5 +22,8 @@ router.post('/create-session', passport.authenticate(
     'local',
     { failureRedirect: '/users/sign-in' },
 ), usersController.createSession);
+
+//
+router.get('/sign-out', usersController.destroySession);
 
 module.exports = router;
