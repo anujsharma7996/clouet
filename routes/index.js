@@ -9,7 +9,7 @@ router.get('/', homeController.home);
 router.use('/users', require('./users'));
 
 //router for posts
-router.get('/posts', require('./posts'));
+router.use('/posts', require('./posts'));
 
 // router.use('/routerName', require('./routerFile));
 
