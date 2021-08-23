@@ -3,9 +3,19 @@
 <h1>Clouet <%= title %>
 </h1>
 
-<p>
-    <%= profile_user.name %>
-</p>
-<p>
-    <%= profile_user.email %>
-</p>
+<% if (user.id==profile_user.id) { %>
+    <!-- If user matches then show form -->
+    <form action="/users/update/<%= profile_user.id %>" method="POST">
+        <input type="text" name="name" value="<%= user.name %>" required>
+        <input type="email" name="email" value="<%= user.email %>" required>
+        <input type="submit" value="Update">
+    </form>
+    <% } else { %>
+        <!-- Else show profile info -->
+        <p>
+            <%= profile_user.name %>
+        </p>
+        <p>
+            <%= profile_user.email %>
+        </p>
+        <% } %>

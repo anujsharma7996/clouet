@@ -3,21 +3,6 @@ const User = require('../models/user');
 
 // rendering profile page
 module.exports.profile = function (req, res) {
-    // if (req.cookies.user_id) {
-    //     User.findById(req.cookies.user_id, function (err, user) {
-    //         if (user) {
-    //             return res.render('users', {
-    //                 title: "Profile",
-    //                 user: user
-    //             });
-    //         }
-
-    //         return res.redirect('/users/sign-in');
-    //     });
-    // } else {
-    //     return res.redirect('/users/sign-in');
-    // }
-
     User.findById(req.params.id, function (err, user) {
         return res.render('users', {
             title: "Profile",
@@ -25,6 +10,18 @@ module.exports.profile = function (req, res) {
         });
     });
 }
+
+// updating profile info
+module.exports.update = function (req, res) {
+    if (req.user.id == req.params.id) {
+        User.findByIdAndUpdate(req.params.id, req.body, function (err, user) {
+            return res.redirect('back');
+        });
+    } else {
+        return res.status(401).send('Unauthorized');
+    }
+}
+
 
 // rendering sign-up page
 module.exports.signUp = function (req, res) {
