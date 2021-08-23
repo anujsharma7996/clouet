@@ -8,7 +8,7 @@
 
         <div class="header-profile">
             <% if (locals.user) { %>
-                <a href="/users/profile">
+                <a href="/users/profile/<%= u.id %>">
                     <%= user.name %>
                 </a>
 

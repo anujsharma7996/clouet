@@ -18,8 +18,11 @@ module.exports.profile = function (req, res) {
     //     return res.redirect('/users/sign-in');
     // }
 
-    return res.render('users', {
-        title: "Profile"
+    User.findById(req.params.id, function (err, user) {
+        return res.render('users', {
+            title: "Profile",
+            profile_user: user
+        });
     });
 }
 

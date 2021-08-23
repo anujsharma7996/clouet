@@ -1,4 +1,5 @@
 const Posts = require('../models/post');
+const User = require('../models/user');
 
 // controller for home page
 module.exports.home = function (req, res) {
@@ -20,10 +21,15 @@ module.exports.home = function (req, res) {
             }
         })
         .exec(function (err, posts) {
-            return res.render('home', {
-                title: "Clouet | Home",
-                posts: posts
+
+            User.find({}, function (err, users) {
+                return res.render('home', {
+                    title: "Clouet | Home",
+                    posts: posts,
+                    all_users: users
+                });
             });
+
         });
 }
 
