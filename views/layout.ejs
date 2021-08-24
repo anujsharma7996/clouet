@@ -16,12 +16,18 @@
 <body>
     <%- include('_header'); %>
 
-        <%- body %>
+        <% if (flash.success && flash.success.length> 0) { %>
+            <h5>
+                <%= flash.success %>
+            </h5>
+            <% } %>
 
-            <%- include('_footer'); %>
+                <%- body %>
+
+                    <%- include('_footer'); %>
 
 
-                <%- script %>
+                        <%- script %>
 </body>
 
 </html>
