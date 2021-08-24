@@ -6,7 +6,14 @@
 footer {
     display: flex;
     position: absolute;
-    bottom: 0;
+    bottom: 0%;
+    justify-content: flex-start;
     width: 100%;
     background-color: #061823;
+
+    a {
+    text-decoration: none;
+    color: rgb(243, 243, 243);
+    padding-left: 10px;
+    }
 }

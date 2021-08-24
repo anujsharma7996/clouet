@@ -1,18 +1,18 @@
 <li>
-    <p>
+    <div class="comment-content">
+        <div id="name">
+            <p class="name-size">
+                <%= comment.user.name %>
+            </p>
 
-        <% if (locals.user && locals.user.id==comment.user.id) { %>
-            <small> <a href="/comments/destroy/<%= comment.id %> ">
-                    Delete</a></small>
-            <small>
+            <% if (locals.user && locals.user.id==comment.user.id) { %>
+                <a class="delete-button" href="/comments/destroy/<%= comment.id %> ">
+                    <i class="fas fa-trash-alt"></i></a></small>
                 <% } %>
+        </div>
 
-                    <small>
-                        <%= comment.user.name %>
-                    </small>
-
-                    <br>
-
-                    <%= comment.content %>
-    </p>
+        <div class="post-comment-size">
+            <%= comment.content %>
+        </div>
+    </div>
 </li>

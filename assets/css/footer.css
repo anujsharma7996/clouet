@@ -1,6 +1,11 @@
 footer {
   display: flex;
   position: absolute;
-  bottom: 0;
+  bottom: 0%;
+  justify-content: flex-start;
   width: 100%;
   background-color: #061823; }
+  footer a {
+    text-decoration: none;
+    color: #f3f3f3;
+    padding-left: 10px; }
