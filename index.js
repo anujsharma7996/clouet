@@ -32,6 +32,9 @@ app.use(cookieParser());
 // setting up static files
 app.use(express.static('./assets'));
 
+// making the uploads path available to the browser
+app.use('/uploads', express.static(__dirname + '/uploads'));
+
 // using express EJS Layouts
 app.use(expressLayouts);
 
