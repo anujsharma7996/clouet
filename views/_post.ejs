@@ -2,14 +2,13 @@
     <p>
 
     <div>
-
         <p class="name-size">
             <!-- Name -->
             <%= post.user.name %>
         </p>
         <!-- Show delete button if authorised -->
         <% if (locals.user && locals.user.id==post.user.id) { %>
-            <a class="delete-post-button" href="/posts/destroy/<%= post.id %> ">
+            <a class="delete-post-button" href="/posts/destroy/<%= post.id %>">
                 <i class="fas fa-trash-alt"></i></a>
             <% } %>
     </div>
@@ -23,7 +22,7 @@
 
     <div class="post-comments">
         <% if (locals.user) { %>
-            <form action="/comments/create" method="POST">
+            <form id="post-<%= post._id %>-comments-form" action="/comments/create" method="POST">
                 <input type="text" name="content" placeholder="Add comment..." required>
                 <input type="hidden" name="post" value="<%= post._id %>">
                 <input type="submit" value="Comment">
@@ -31,7 +30,7 @@
             <% } %>
 
                 <div class="post-comments-list">
-                    <ul id="post-comments-<%= post._id %> ">
+                    <ul id="post-comments-<%= post._id %>">
                         <% for (comment of post.comments) { %>
                             <%- include('_comment') -%>
                                 <% } %>

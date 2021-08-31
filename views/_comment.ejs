@@ -1,5 +1,5 @@
-<li>
-    <div class="comment-content">
+<li id="comment-<%= comment._id %>">
+    <div class=" comment-content">
         <div id="name">
             <p class="name-size">
                 <%= comment.user.name %>
@@ -7,7 +7,7 @@
 
             <% if (locals.user && locals.user.id==comment.user.id) { %>
                 <a class="delete-button" href="/comments/destroy/<%= comment.id %> ">
-                    <i class="fas fa-trash-alt"></i></a></small>
+                    <i class="fas fa-trash-alt"></i></a>
                 <% } %>
         </div>
 

@@ -13,24 +13,53 @@ module.exports.create = async function (req, res) {
             });
             post.comments.push(comment);
             post.save();
+
+            // ajax 
+            if (req.xhr) {
+                comment = await comment.populate('user', 'name').execPopulate();
+
+                return res.status(200).json({
+                    data: {
+                        comment: comment
+                    },
+                    message: "Comment Posted!"
+                });
+            }
+
             res.redirect('/');
         }
     } catch (err) {
         console.log('Error', err);
+        return;
     }
 }
 
 module.exports.destroy = async function (req, res) {
-    let comment = await Comment.findById(req.params.id);
+    try {
+        let comment = await Comment.findById(req.params.id);
 
-    if (comment.user == req.user.id) {
-        let postID = comment.post;
-        comment.remove();
+        if (comment.user == req.user.id) {
+            let postID = comment.post;
+            comment.remove();
 
-        let post = await Post.findByIdAndUpdate(postID, { $pull: { comments: req.params.id } });
+            let post = Post.findByIdAndUpdate(postID, { $pull: { comments: req.params.id } });
 
-        return res.redirect('back');
-    } else {
-        return res.redirect('back');
+            if (req.xhr) {
+                return res.status(200).json({
+                    data: {
+                        comment_id: req.params.id
+                    },
+                    message: "Post deleted!"
+                });
+            }
+
+            return res.redirect('back');
+        } else {
+            return res.redirect('back');
+        }
+    }
+    catch (err) {
+        console.log(err.responseText);
+        return;
     }
 }
