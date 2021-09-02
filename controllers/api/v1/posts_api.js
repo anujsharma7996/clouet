@@ -40,7 +40,7 @@ module.exports.destroy = async function (req, res) {
 
     } catch (err) {
         console.log(err);
-        return res.json(200, {
+        return res.json(500, {
             message: "Internal Server Error"
         })
     }
