@@ -72,17 +72,20 @@ class PostComments {
         });
     }
 
-    convertCommentToAjax() {
-        $('.post-comments-list>ul>li').each(function () {
-            let self = $(this);
-            let deleteButton = $(' .delete-button', self);
-            deleteComment(deleteButton);
+    //     convertCommentToAjax() {
+    //         $('.post-comments-list>ul>li').each(function () {
+    //             let self = $(this);
+    //             let deleteButton = $(' .delete-button', self);
+    //             deleteComment(deleteButton);
 
-            // get the comment's id by splitting the id attribute
-            let commentId = self.prop('id').split("-")[1]
-            new PostComments(commentId);
-        });
-    }
+    //             // get the comment's id by splitting the id attribute
+    //             let commentId = self.prop('id').split("-")[1];
+    //             new PostComments(commentId);
+    //         });
+    //     }
 
-    convertCommentToAjax();
+    //     convertCommentToAjax();
+    // }
+
+    // module.exports.PostComments = PostComments;
 }

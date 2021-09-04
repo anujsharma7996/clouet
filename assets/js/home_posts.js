@@ -1,5 +1,7 @@
 // method to submit the form data for new post using AJAX
 {
+    // const { PostComments } = require("./home_post_comments");
+
     let createPost = function () {
         let newPostForm = $('#new-post-form');
 

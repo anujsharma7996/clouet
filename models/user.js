@@ -20,6 +20,8 @@ const userSchema = mongoose.Schema({
     avatar: {
         type: String
     }
+}, {
+    timestamps: true
 });
 
 // multer
@@ -28,10 +30,10 @@ let storage = multer.diskStorage({
         cb(null, path.join(__dirname, '..', AVATAR_PATH));
     },
     filename: function (req, file, cb) {
-        const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-        cb(null, file.fieldname + - + Date.now());
+        // const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+        cb(null, file.fieldname + '-' + Date.now());
     }
-})
+});
 
 // static methods
 userSchema.statics.uploadedAvatar = multer({ storage: storage }).single('avatar');
